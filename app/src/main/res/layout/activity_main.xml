@@ -13,24 +13,23 @@
         tools:context=".MainActivity">
 
 
-
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="130dp"
-            android:layout_height="101dp"
+            android:layout_width="150dp"
+            android:layout_height="118dp"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView5"
-            app:srcCompat="@drawable/_686210597satellite_in_orbit" />
+            app:srcCompat="@drawable/logo" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Bem-Vinde ao HotelHub!"
+            android:text="Bem-Vindo(a) ao HotelHub!"
             android:textColor="#aaa"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

@@ -14,12 +14,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Gravity;
-import android.view.View;
+
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -36,11 +31,21 @@ public class MainActivity2 extends AppCompatActivity {
     private CheckBox checkBox2;
 
     private CheckBox checkBox3;
-    private TextView textViewTotal;
 
+    private CheckBox checkBox4;
+
+    private CheckBox checkBox5;
+    private CheckBox checkBox6;
+    private TextView textViewTotal;
+    private TextView textViewTotal2;
+
+    private TextView textViewTotal3;
     private int total = 0;
+    private int total2 =0;
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMain2Binding binding;
+
+    private Button calcularTotal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,8 +75,13 @@ public class MainActivity2 extends AppCompatActivity {
         checkBox1 = findViewById(R.id.checkbox1);
         checkBox2 = findViewById(R.id.checkbox2);
         checkBox3 = findViewById(R.id.checkbox3);
-        textViewTotal = findViewById(R.id.textview_total);
-
+        checkBox4 = findViewById(R.id.checkbox4);
+        checkBox5 = findViewById(R.id.checkbox5);
+        checkBox6 = findViewById(R.id.checkbox6);
+        textViewTotal = findViewById(R.id.textViewTotal);
+        textViewTotal2 = findViewById(R.id.textViewTotal2);
+        textViewTotal3 = findViewById(R.id.textViewTotal3);
+        calcularTotal  = findViewById(R.id.calcTotal);
 
         checkBox1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,8 +92,10 @@ public class MainActivity2 extends AppCompatActivity {
                     total -= 10;
                 }
                 updateTotal();
+                updateTotal3();
             }
         });
+
 
 
         checkBox2.setOnClickListener(new View.OnClickListener() {
@@ -95,8 +107,11 @@ public class MainActivity2 extends AppCompatActivity {
                     total -= 20;
                 }
                 updateTotal();
+                updateTotal3();
             }
         });
+
+
 
 
         checkBox3.setOnClickListener(new View.OnClickListener() {
@@ -108,15 +123,74 @@ public class MainActivity2 extends AppCompatActivity {
                     total -= 30;
                 }
                 updateTotal();
+                updateTotal3();
             }
         });
+
+        checkBox4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkBox4.isChecked()) {
+                    total2 += 10;
+                } else {
+                    total2 -= 10;
+                }
+                updateTotal2();
+                updateTotal3();
+            }
+        });
+
+        checkBox5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkBox5.isChecked()) {
+                    total2 += 20;
+                } else {
+                    total2 -= 20;
+                }
+                updateTotal2();
+                updateTotal3();
+            }
+        });
+
+        checkBox6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkBox6.isChecked()) {
+                    total2 += 30;
+                } else {
+                    total2 -= 30;
+                }
+                updateTotal2();
+                updateTotal3();
+            }
+        });
+
+
+        calcularTotal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Criar a Intent
+                Intent intent = new Intent(MainActivity2.this, MainActivity3.class);
+                int somaTotal = total + total2; // Substitua pelo valor que deseja passar para a próxima tela
+                intent.putExtra("nome", nome);
+                intent.putExtra("somaTotal", somaTotal);
+                // Iniciar a nova atividade
+                startActivity(intent);
+            }
+        });
+
 
 
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main2);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -124,7 +198,9 @@ public class MainActivity2 extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main2, menu);
         return true;
 
+
     }
+
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -132,10 +208,28 @@ public class MainActivity2 extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main2);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+
     }
 
     private void updateTotal() {
-        textViewTotal.setText("Total: $" + total);
+        textViewTotal.setText("Total em Quarto: $" + total);
     }
+    private void updateTotal2() {
+        textViewTotal2.setText("Total em Serviços: $" + total2);
+    }
+
+    private void updateTotal3() {
+        int somaTotal = total + total2;
+        textViewTotal3.setText("Acumulo de serviço(s) prestado(s): $" + somaTotal );
+    }
+
+
+
+
+
+
+
+
+
 
 }
